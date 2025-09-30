@@ -11,7 +11,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { loginSchema, type LoginFormData } from '@/lib/validations/auth'
-import Image from 'next/image'
 
 export default function LoginPage() {
   const [error, setError] = useState('')
@@ -43,20 +42,12 @@ export default function LoginPage() {
         router.push('/dashboard')
         router.refresh()
       }
-    } catch (error) {
+    } catch (err) {
       setError('Error al iniciar sesión. Intenta nuevamente.')
     } finally {
       setIsLoading(false)
     }
   }
-
-  // Datos de prueba para desarrollo
-  const testAccounts = [
-    { email: 'admin@restaurante.com', password: 'Admin123!', role: 'Administrador' },
-    { email: 'mesero@restaurante.com', password: 'Mesero123!', role: 'Mesero' },
-    { email: 'chef@restaurante.com', password: 'Chef123!', role: 'Chef' },
-    { email: 'cliente@restaurante.com', password: 'Cliente123!', role: 'Cliente' }
-  ]
 
   const fillTestAccount = (testEmail: string, testPassword: string) => {
     form.setValue('email', testEmail)

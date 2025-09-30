@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
 import { registerSchema, type RegisterFormData } from '@/lib/validations/auth'
-import { ZodError } from 'zod'
+
 
 export async function POST(request: Request) {
   try {
@@ -67,16 +67,16 @@ export async function POST(request: Request) {
       { status: 201 }
     )
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error en registro:', error)
     
-    // Manejar errores específicos de Prisma
-    if (error.code === 'P2002') {
+    if (typeof error === 'object' && error !== null && 'code' in error && error.code === 'P2002') {
       return NextResponse.json(
         { error: 'El email ya está registrado' },
         { status: 400 }
       )
     }
+
     
     return NextResponse.json(
       { error: 'Error interno del servidor' },

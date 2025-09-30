@@ -7,6 +7,7 @@ import { ServicesSection } from '@/components/SeccionServicios';
 import { MenuSection } from '@/components/MenuSection';
 import { ReviewsSection } from '@/components/SeccionReviews';
 import { SubscribeSection } from '@/components/SeccionSuscripción';
+import { Footer } from '@/components/Footer';
 
 export default function FoodDeliveryHero() {
   return (
@@ -29,6 +30,8 @@ export default function FoodDeliveryHero() {
       <ReviewsSection />
 
       <SubscribeSection />
+
+      <Footer />
     </div>
   );
 }

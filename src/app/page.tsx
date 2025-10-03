@@ -1,13 +1,13 @@
 import React from 'react';
-import { Navbar } from '@/components/Navbar';
-import { HeroContent } from '@/components/heroComponent';
-import { HeroImage } from '@/components/heroImagen';
-import { FoodCategoriesSection } from '@/components/SeccionCategorias';
-import { ServicesSection } from '@/components/SeccionServicios';
-import { MenuSection } from '@/components/MenuSection';
-import { ReviewsSection } from '@/components/SeccionReviews';
-import { SubscribeSection } from '@/components/SeccionSuscripción';
-import { Footer } from '@/components/Footer';
+import { Navbar } from '@/components/Landing/Navbar';
+import { HeroContent } from '@/components/Landing/heroComponent';
+import { HeroImage } from '@/components/Landing/heroImagen';
+import { FoodCategoriesSection } from '@/components/Landing/SeccionCategorias';
+import { ServicesSection } from '@/components/Landing/SeccionServicios';
+import { MenuSection } from '@/components/Landing/MenuSection';
+import { ReviewsSection } from '@/components/Landing/SeccionReviews';
+import { SubscribeSection } from '@/components/Landing/SeccionSuscripción';
+import { Footer } from '@/components/Landing/Footer';
 
 export default function FoodDeliveryHero() {
   return (

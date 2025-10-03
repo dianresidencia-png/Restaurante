@@ -1,7 +1,7 @@
 // components/MenuSection.tsx
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { MenuItemCard } from '../app/Menu/components/MenuItemCard';
+import { MenuItemCard } from '../../app/Menu/components/MenuItemCard';
 
 export const MENU_ITEMS = [
   {

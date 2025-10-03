@@ -11,6 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { loginSchema, type LoginFormData } from '@/lib/validations/auth'
+import { getSession } from 'next-auth/react'
 
 export default function LoginPage() {
   const [error, setError] = useState('')
@@ -39,7 +40,33 @@ export default function LoginPage() {
       if (result?.error) {
         setError('Credenciales inválidas. Verifica tu email y contraseña.')
       } else {
-        router.push('/dashboard')
+        const session = await getSession()
+        const role = session?.user?.role
+
+        switch (role) {
+          case 'CLIENTE':
+            router.push('/cliente')
+            break
+          case 'CHEF':
+            router.push('/chef')
+            break
+          case 'MESERO':
+            router.push('/mesero')
+            break
+          case 'GERENTE':
+            router.push('/geremte')
+            break
+          case 'SUPERVISOR':
+            router.push('/supervisor')
+            break
+          case 'SUPER_ADMIN':
+            router.push('/Super-admin')
+            break
+          default:
+            router.push('/')
+            break
+        }
+
         router.refresh()
       }
     } catch (err) {
@@ -48,6 +75,7 @@ export default function LoginPage() {
       setIsLoading(false)
     }
   }
+
 
   const fillTestAccount = (testEmail: string, testPassword: string) => {
     form.setValue('email', testEmail)

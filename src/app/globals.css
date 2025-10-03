@@ -1,2 +1,67 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+
+@layer base {
+  :root {
+    /* Colores base del sistema */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    
+    /* Color principal del landing (Naranja) */
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Colores por rol de usuario */
+    --cliente: 142 71% 45%;           /* Verde #10b981 */
+    --cliente-foreground: 0 0% 100%;
+    
+    --mesero: 217 91% 60%;            /* Azul #3b82f6 */
+    --mesero-foreground: 0 0% 100%;
+    
+    --chef: 0 84% 60%;                /* Rojo #ef4444 */
+    --chef-foreground: 0 0% 100%;
+    
+    --supervisor: 258 90% 66%;        /* Púrpura #8b5cf6 */
+    --supervisor-foreground: 0 0% 100%;
+    
+    --gerente: 199 89% 48%;           /* Sky #0ea5e9 */
+    --gerente-foreground: 0 0% 100%;
+    
+    --admin: 222.2 47.4% 11.2%;       /* Slate oscuro #1e293b */
+    --admin-foreground: 0 0% 100%;
+    
+    /* Shadcn default colors */
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --primary: 24 95% 53%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+  }
+}

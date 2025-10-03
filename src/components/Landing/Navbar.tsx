@@ -18,10 +18,10 @@ export function Navbar() {
           <ShoppingBag className="w-5 h-5 text-orange-600" />
         </button>
         <Button variant="ghost" className="hidden md:inline-flex text-gray-700 hover:text-orange-500">
-          Log in
+          <a href='/auth/login'>Log in</a> 
         </Button>
         <Button className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-6">
-          Sign up
+          <a href="/auth/register">Sign up</a>
         </Button>
       </div>
     </nav>

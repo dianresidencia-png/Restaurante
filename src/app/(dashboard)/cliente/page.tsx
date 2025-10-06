@@ -20,13 +20,7 @@ export default async function ClienteDashboard() {
       {/* Contenido */}
       <div className="flex-1 overflow-auto p-6">
         <div className="space-y-6">
-          <div>
-            <h2 className="text-3xl font-bold tracking-tight">Bienvenido de nuevo</h2>
-            <p className="text-muted-foreground">
-              Descubre nuestro delicioso menú y haz tu pedido
-            </p>
-          </div>
-
+        
           {/* Quick Actions */}
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <Card>

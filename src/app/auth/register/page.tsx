@@ -29,7 +29,7 @@ export default function RegisterPage() {
       email: '',
       password: '',
       confirmPassword: '',
-      // ❌ NO incluir role - se asigna automáticamente como CLIENTE
+
     }
   })
 

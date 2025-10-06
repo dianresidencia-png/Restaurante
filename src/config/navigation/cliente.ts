@@ -3,7 +3,7 @@ import { Home, Menu, ShoppingBag, MessageSquare } from 'lucide-react'
 export const clienteNavigation = [
   { 
     name: 'Inicio', 
-    href: '/cliente', 
+    href: '/dashboard/cliente', 
     icon: Home 
 },
 

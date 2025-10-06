@@ -76,7 +76,7 @@ export function AppSidebar({ userRole }: AppSidebarProps) {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip="Perfil">
-                  <Link href="/perfil">
+                  <Link href="/dashboard/perfil">
                     <Settings />
                     <span>Perfil</span>
                   </Link>

@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
-import { authOptions } from '@/auth' // Ajusta esta ruta
+import { authOptions } from '@/auth'
 
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions)
@@ -10,7 +10,7 @@ export default async function DashboardPage() {
   }
 
   const rolePath = getDashboardPath(session.user?.role)
-  redirect(`/${rolePath}`)
+  redirect(`/dashboard/${rolePath}`)
 }
 
 function getDashboardPath(role?: string) {

@@ -45,22 +45,22 @@ export default function LoginPage() {
 
         switch (role) {
           case 'CLIENTE':
-            router.push('/cliente')
+            router.push('/dashboard/cliente')
             break
           case 'CHEF':
-            router.push('/chef')
+            router.push('/dashboard/chef')
             break
           case 'MESERO':
-            router.push('/mesero')
+            router.push('/dashboard/mesero')
             break
           case 'GERENTE':
-            router.push('/geremte')
+            router.push('/dashboard/geremte')
             break
           case 'SUPERVISOR':
-            router.push('/supervisor')
+            router.push('/dashboard/supervisor')
             break
           case 'SUPER_ADMIN':
-            router.push('/Super-admin')
+            router.push('/dashboard/Super-admin')
             break
           default:
             router.push('/')

@@ -1,4 +1,3 @@
-
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -14,12 +13,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Configuración extendida para grupos de rutas
-  experimental: {
-    serverComponentsExternalPackages: ['bcryptjs'],
-  },
-  // Agregar transpilePackages
-  transpilePackages: ['next-auth', 'bcryptjs'],
 }
 
 module.exports = nextConfig

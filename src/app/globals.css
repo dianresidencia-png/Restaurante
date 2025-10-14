@@ -1,67 +1,207 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@layer base {
+@layer theme, base, components, utilities;
+
+@layer theme {
   :root {
-    /* Colores base del sistema */
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Colores base del sistema - Tema Naranja */
+    --color-background: oklch(1 0 0);
+    --color-foreground: oklch(0.13 0.028 261.692);
     
-    /* Color principal del landing (Naranja) */
-    --primary: 24 95% 53%;
-    --primary-foreground: 0 0% 100%;
+    /* Color principal del restaurante (Naranja) */
+    --color-primary: oklch(0.65 0.25 45);
+    --color-primary-foreground: oklch(1 0 0);
     
-    /* Colores por rol de usuario */
-    --cliente: 142 71% 45%;           /* Verde #10b981 */
-    --cliente-foreground: 0 0% 100%;
+    /* Variaciones del naranja para diferentes estados */
+    --color-primary-dark: oklch(0.55 0.25 45);
+    --color-primary-light: oklch(0.95 0.05 45);
     
-    --mesero: 217 91% 60%;            /* Azul #3b82f6 */
-    --mesero-foreground: 0 0% 100%;
+    /* Colores secundarios armónicos con naranja */
+    --color-secondary: oklch(0.65 0.25 25);
+    --color-secondary-foreground: oklch(1 0 0);
     
-    --chef: 0 84% 60%;                /* Rojo #ef4444 */
-    --chef-foreground: 0 0% 100%;
+    --color-accent: oklch(0.75 0.25 85);
+    --color-accent-foreground: oklch(0.13 0.028 261.692);
     
-    --supervisor: 258 90% 66%;        /* Púrpura #8b5cf6 */
-    --supervisor-foreground: 0 0% 100%;
+
+    --color-cliente: oklch(0.65 0.25 150);
+    --color-cliente-foreground: oklch(1 0 0);
     
-    --gerente: 199 89% 48%;           /* Sky #0ea5e9 */
-    --gerente-foreground: 0 0% 100%;
+    --color-mesero: oklch(0.65 0.25 45);
+    --color-mesero-foreground: oklch(1 0 0);
     
-    --admin: 222.2 47.4% 11.2%;       /* Slate oscuro #1e293b */
-    --admin-foreground: 0 0% 100%;
+    --color-chef: oklch(0.65 0.25 25);
+    --color-chef-foreground: oklch(1 0 0);
     
-    /* Shadcn default colors */
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
+    --color-supervisor: oklch(0.75 0.25 85);
+    --color-supervisor-foreground: oklch(27.968% 0.08696 265.764);
     
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --color-admin-local: oklch(0.65 0.25 230);
+    --color-admin-local-foreground: oklch(1 0 0);
+    
+    --color-super-admin: oklch(0.13 0.028 261.692);
+    --color-super-admin-foreground: oklch(1 0 0);
+
+    /* Colores de componentes */
+    --color-card: oklch(1 0 0);
+    --color-card-foreground: oklch(0.13 0.028 261.692);
+    --color-popover: oklch(1 0 0);
+    --color-popover-foreground: oklch(0.13 0.028 261.692);
+    --color-muted: oklch(0.95 0.05 45);
+    --color-muted-foreground: oklch(0.55 0.05 45);
+    --color-destructive: oklch(0.65 0.25 25);
+    --color-destructive-foreground: oklch(1 0 0);
+    --color-border: oklch(0.9 0.1 45);
+    --color-input: oklch(0.9 0.1 45);
+    --color-ring: oklch(0.65 0.25 45);
+    
+    /* Border radius */
+    --radius: 0.75rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --primary: 24 95% 53%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --color-background: oklch(0.13 0.028 261.692);
+    --color-foreground: oklch(0.95 0.05 45);
+    --color-primary: oklch(0.65 0.25 45);
+    --color-primary-foreground: oklch(0.13 0.028 261.692);
+    --color-card: oklch(0.2 0.028 261.692);
+    --color-card-foreground: oklch(0.95 0.05 45);
+    --color-border: oklch(0.3 0.028 261.692);
+    --color-input: oklch(0.3 0.028 261.692);
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Scrollbar personalizado */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--color-primary-light);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  .btn-restaurant {
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    transform: scale(1);
+    
+    &:hover {
+      background-color: var(--color-primary-dark);
+      transform: scale(1.05);
+    }
+  }
+  
+  .card-restaurant {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    
+    &:hover {
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    }
+  }
+  
+  .badge-role {
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+  
+  .badge-cliente {
+    background-color: var(--color-cliente);
+    color: var(--color-cliente-foreground);
+  }
+  
+  .badge-mesero {
+    background-color: var(--color-mesero);
+    color: var(--color-mesero-foreground);
+  }
+  
+  .badge-chef {
+    background-color: var(--color-chef);
+    color: var(--color-chef-foreground);
+  }
+  
+  .badge-supervisor {
+    background-color: var(--color-supervisor);
+    color: var(--color-supervisor-foreground);
+  }
+  
+  .badge-admin-local {
+    background-color: var(--color-admin-local);
+    color: var(--color-admin-local-foreground);
+  }
+  
+  .badge-super-admin {
+    background-color: var(--color-super-admin);
+    color: var(--color-super-admin-foreground);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .bg-gradient-restaurant {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  }
+
+  /* Degradado vibrante para sidebar principal */
+  .bg-gradient-sidebar {
+    background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-dark) 50%, var(--color-secondary) 100%);
+  }
+
+  /* Degradado suave para hover o fondo de ítems */
+  .bg-gradient-hover {
+    background: linear-gradient(90deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+  }
+
+  /* Degradado radial para efectos sutiles */
+  .bg-gradient-radial {
+    background: radial-gradient(circle at top left, var(--color-primary-light), var(--color-primary));
+  }
+
+  /* Degradado diagonal para headers o cards destacados */
+  .bg-gradient-diagonal {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  }
+
+  /* Degradado animado para transiciones suaves */
+  .bg-gradient-animated {
+    background: linear-gradient(270deg, var(--color-primary), var(--color-secondary));
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 }

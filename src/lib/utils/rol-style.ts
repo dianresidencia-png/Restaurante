@@ -17,7 +17,7 @@ export const roleColorMap: Record<UserRole, string> = {
   SUPER_ADMIN: 'bg-admin/5',
 }
 
-// Función helper para obtener todas las clases de un rol
+
 export function getRoleClasses(role: UserRole) {
   const colorName = role.toLowerCase().replace('_local', '').replace('super_', '')
   

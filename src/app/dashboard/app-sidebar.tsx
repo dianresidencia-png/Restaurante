@@ -17,7 +17,7 @@ import {
 import { Settings, LogOut } from 'lucide-react'
 import { navigationByRole, type UserRole } from '@/config/navigation/index'
 import { roleColorMap } from '@/lib/utils/rol-style'
-import { cn } from '@/lib/utils'
+
 
 interface AppSidebarProps {
   userRole: UserRole
@@ -29,7 +29,7 @@ export function AppSidebar({ userRole }: AppSidebarProps) {
   const sidebarColorClass = roleColorMap[userRole] 
 
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar collapsible="icon" className='bg-gradient-radial '>
       <SidebarHeader>
         <div className="flex items-center gap-2 px-2 py-2">
           <div className="w-12 h-12 bg-primary rounded-lg flex bg-orange-500 items-center justify-center">
@@ -46,7 +46,7 @@ export function AppSidebar({ userRole }: AppSidebarProps) {
         </div>
       </SidebarHeader>
 
-      <SidebarContent className={cn(sidebarColorClass)}>
+      <SidebarContent className="">
         <SidebarGroup>
           <SidebarGroupLabel>Navegación</SidebarGroupLabel>
           <SidebarGroupContent>

@@ -1,7 +1,8 @@
-import { Home, MessageSquare, ClipboardList } from 'lucide-react'
+import { Home, MessageSquare, ClipboardList, Utensils } from 'lucide-react'
 
 export const meseroNavigation = [
   { name: 'Inicio', href: '/dashboard/mesero', icon: Home },
-  { name: 'Chats Activos', href: '/mesero/chats', icon: MessageSquare },
-  { name: 'Pedidos', href: '/mesero/pedidos', icon: ClipboardList },
+  { name: 'Chats', href: '/dashboard/mesero/chats', icon: MessageSquare },
+  { name: 'Pedidos', href: '/dashboard/mesero/pedidos', icon: ClipboardList },
+  { name: 'Menú', href: '/dashboard/mesero/menu', icon: Utensils },
 ]

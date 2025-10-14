@@ -15,7 +15,7 @@ export default async function AdminDashboard() {
   return (
     <div className="flex flex-col">
   
-      <main className="flex-1 space-y-4 p-6">
+      <main className="flex-1 space-y-4 p-6 ">
         <h2 className="text-3xl font-bold">Panel de Administración</h2>
         
         <div className="grid gap-4 md:grid-cols-3">

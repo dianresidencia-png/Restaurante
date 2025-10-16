@@ -10,7 +10,7 @@ export type UserRole =
   | 'MESERO' 
   | 'CHEF' 
   | 'SUPERVISOR' 
-  | 'GERENTE_LOCAL' 
+  | 'GERENTE' 
   | 'SUPER_ADMIN'
 
 export const navigationByRole: Record<UserRole, Array<{ 
@@ -22,6 +22,6 @@ export const navigationByRole: Record<UserRole, Array<{
   MESERO: meseroNavigation,
   CHEF: chefNavigation,
   SUPERVISOR: supervisorNavigation,
-  GERENTE_LOCAL: gerenteNavigation,
+  GERENTE: gerenteNavigation,
   SUPER_ADMIN: superAdminNavigation,
 }

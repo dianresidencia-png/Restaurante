@@ -4,7 +4,7 @@ export type UserRole =
   | 'MESERO' 
   | 'CHEF' 
   | 'SUPERVISOR' 
-  | 'GERENTE_LOCAL' 
+  | 'GERENTE' 
   | 'SUPER_ADMIN'
 
 
@@ -13,7 +13,7 @@ export const roleColorMap: Record<UserRole, string> = {
   MESERO: 'bg-mesero/5',
   CHEF: 'bg-chef/5',
   SUPERVISOR: 'bg-supervisor/5',
-  GERENTE_LOCAL: 'bg-gerente/5',
+  GERENTE: 'bg-gerente/5',
   SUPER_ADMIN: 'bg-admin/5',
 }
 

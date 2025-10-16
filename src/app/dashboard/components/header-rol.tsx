@@ -10,7 +10,7 @@ const roleMap: Record<string, UserRole> = {
   MESERO: 'MESERO',
   CHEF: 'CHEF',
   SUPERVISOR: 'SUPERVISOR',
-  GERENTE_LOCAL: 'GERENTE_LOCAL',
+  GERENTE: 'GERENTE',
   SUPER_ADMIN: 'SUPER_ADMIN'
 }
 
@@ -38,8 +38,8 @@ export function Header() {
 
       <div className="flex items-center gap-4">
         <button className={cn(
-          "px-4 py-2 rounded-lg font-medium transition-colors",
-          roleColors.button
+          "px-4 py-2 rounded-lg font-medium transition-colors btn-restaurant",
+      
         )}>
           Acción Principal
         </button>
@@ -54,7 +54,7 @@ function getRoleDescription(role: UserRole): string {
     MESERO: "Gestiona chats y órdenes de clientes", 
     CHEF: "Prepara órdenes en la cocina",
     SUPERVISOR: "Supervisa operación del turno",
-    GERENTE_LOCAL: "Administra el restaurante",
+    GERENTE: "Administra el restaurante",
     SUPER_ADMIN: "Gestiona múltiples restaurantes"
   }
   return descriptions[role] || ''

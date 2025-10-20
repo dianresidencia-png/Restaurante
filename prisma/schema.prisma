@@ -34,31 +34,251 @@ model Session {
 }
 
 model User {
-  id          String    @id @default(cuid())
-  name        String?
-  email       String    @unique
-  password    String?
-  role        String    @default("CLIENTE")
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  phone       String?
-  address     String?
-  preferences String?
-  accounts    Account[]
-  sessions    Session[]
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  password      String?
+  role          UserRole  @default(CLIENTE)
+  phone         String?
+  address       String?
+  preferences   String?
+  activo        Boolean   @default(true)
+
+  // Relación con restaurante donde trabaja
+  restauranteId   String?      @map("restaurante_id")
+  restaurante     Restaurante? @relation(fields: [restauranteId], references: [id], name: "UserRestaurante")
+
+  // Relación como gerente de restaurantes
+  restaurantesComoGerente Restaurante[] @relation("RestauranteGerente")
+
+  // Relaciones con pedidos
+  pedidosComoCliente Pedido[] @relation("PedidoCliente")
+  pedidosComoMesero  Pedido[] @relation("PedidoMesero")
+  
+  // Otras relaciones
+  historialPedidos   HistorialPedido[]
+  chats              Chat[]
+
+  accounts Account[]
+  sessions Session[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
 }
 
-model Restaurant {
-  id        String   @id @default(cuid())
-  name      String
-  address   String?
-  phone     String?
-  isActive  Boolean  @default(true)
-  createdAt DateTime @default(now())
+model Restaurante {
+  id          String  @id @default(cuid())
+  nombre      String
+  direccion   String?
+  telefono    String?
+  descripcion String?
+  activo      Boolean @default(true)
+
+  // 👇 ESTA ES LA COLUMNA QUE FALTA - RELACIÓN CON GERENTE
+  gerenteId   String?  @map("gerente_id")
+  gerente     User?    @relation(fields: [gerenteId], references: [id], name: "RestauranteGerente")
+
+  // Relaciones
+  usuarios User[] @relation("UserRestaurante")
+  menus    Menu[]
+  pedidos  Pedido[]
+  mesas    Mesa[]
+  chats    Chat[]
+
+  // Configuración
+  configuracion Json?
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("restaurantes")
 }
 
-model playing_with_neon {
-  id    Int    @id @default(autoincrement())
-  name  String
-  value Float? @db.Real
+model Menu {
+  id            String   @id @default(cuid())
+  nombre        String
+  descripcion   String?
+  tipoMenu      TipoMenu @map("tipo_menu")
+  horarioInicio String   @map("horario_inicio")
+  horarioFin    String   @map("horario_fin") 
+  activo        Boolean  @default(true)
+
+  // Relaciones
+  restauranteId String      @map("restaurante_id")
+  restaurante   Restaurante @relation(fields: [restauranteId], references: [id])
+  platillos     Platillo[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("menus")
+}
+
+model Platillo {
+  id          String  @id @default(cuid())
+  nombre      String
+  descripcion String?
+  precio      Float
+  imagen      String?
+  categoria   String
+  activo      Boolean @default(true)
+
+  // Relaciones
+  menuId      String       @map("menu_id")
+  menu        Menu         @relation(fields: [menuId], references: [id])
+  pedidoItems PedidoItem[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("platillos")
+}
+
+model Pedido {
+  id         String       @id @default(cuid())
+  estado     EstadoPedido @default(PENDIENTE)
+  total      Float
+  descuento  Float?       @default(0)
+  notas      String?
+  tipoPedido TipoPedido   @default(EN_MESA)
+
+  // Relaciones con nombres específicos
+  clienteId String? @map("cliente_id")
+  cliente   User?   @relation(fields: [clienteId], references: [id], name: "PedidoCliente")
+
+  meseroId String? @map("mesero_id")
+  mesero   User?   @relation(fields: [meseroId], references: [id], name: "PedidoMesero")
+
+  mesaId String? @map("mesa_id")
+  mesa   Mesa?   @relation(fields: [mesaId], references: [id])
+
+  restauranteId String      @map("restaurante_id")
+  restaurante   Restaurante @relation(fields: [restauranteId], references: [id])
+
+  items     PedidoItem[]
+  historial HistorialPedido[]
+  chats     Chat[] 
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("pedidos")
+}
+
+model PedidoItem {
+  id       String  @id @default(cuid())
+  cantidad Int
+  precio   Float
+  notas    String?
+
+  // Relaciones
+  pedidoId   String   @map("pedido_id")
+  pedido     Pedido   @relation(fields: [pedidoId], references: [id])
+  platilloId String   @map("platillo_id")
+  platillo   Platillo @relation(fields: [platilloId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("pedido_items")
+}
+
+model HistorialPedido {
+  id     String       @id @default(cuid())
+  estado EstadoPedido
+  notas  String?
+
+  // Relaciones
+  pedidoId  String  @map("pedido_id")
+  pedido    Pedido  @relation(fields: [pedidoId], references: [id])
+  usuarioId String? @map("usuario_id")
+  usuario   User?   @relation(fields: [usuarioId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("historial_pedidos")
+}
+
+model Mesa {
+  id        String     @id @default(cuid())
+  numero    Int
+  capacidad Int
+  estado    EstadoMesa @default(DISPONIBLE)
+
+  // Relaciones
+  restauranteId String      @map("restaurante_id")
+  restaurante   Restaurante @relation(fields: [restauranteId], references: [id])
+  pedidos       Pedido[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("mesas")
+}
+
+model Chat {
+  id      String   @id @default(cuid())
+  mensaje String
+  tipo    TipoChat @default(TEXTO)
+
+  // Relaciones
+  usuarioId     String      @map("usuario_id")
+  usuario       User        @relation(fields: [usuarioId], references: [id])
+  pedidoId      String?     @map("pedido_id")
+  pedido        Pedido?     @relation(fields: [pedidoId], references: [id])
+  restauranteId String      @map("restaurante_id")
+  restaurante   Restaurante @relation(fields: [restauranteId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("chats")
+}
+
+// Enums
+enum UserRole {
+  SUPER_ADMIN
+  GERENTE
+  SUPERVISOR
+  MESERO
+  CHEF
+  CLIENTE
+}
+
+enum EstadoPedido {
+  PENDIENTE
+  CONFIRMADO
+  EN_PREPARACION
+  LISTO
+  ENTREGADO
+  COMPLETADO
+  CANCELADO
+}
+
+enum EstadoMesa {
+  DISPONIBLE
+  OCUPADA
+  RESERVADA
+  INACTIVA
+}
+
+enum TipoMenu {
+  DESAYUNO
+  COMIDA
+  CENA
+  POSTRES
+  BEBIDAS
+}
+
+enum TipoPedido {
+  EN_MESA
+  WHATSAPP
+  DOMICILIO
+}
+
+enum TipoChat {
+  TEXTO
+  SISTEMA
+  NOTIFICACION
 }

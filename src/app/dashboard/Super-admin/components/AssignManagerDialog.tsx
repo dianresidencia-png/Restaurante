@@ -17,7 +17,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { prisma } from '@/lib/prisma'
 
 interface User {
   id: string
@@ -44,6 +43,7 @@ export function AssignManagerDialog({
   const [users, setUsers] = useState<User[]>([])
   const [selectedUserId, setSelectedUserId] = useState<string>('')
   const [loading, setLoading] = useState(false)
+  const [fetchingUsers, setFetchingUsers] = useState(false)
 
   useEffect(() => {
     if (open) {
@@ -52,14 +52,23 @@ export function AssignManagerDialog({
   }, [open])
 
   const fetchUsers = async () => {
+    setFetchingUsers(true)
     try {
+      
       const response = await fetch('/api/admin/users?role=GERENTE')
+      
       if (response.ok) {
         const data = await response.json()
+      
         setUsers(data.users)
+      } else {
+        const errorData = await response.json()
+        alert('Error al cargar los gerentes: ' + (errorData.error || 'Error desconocido'))
       }
     } catch (error) {
-      console.error('Error fetching users:', error)
+      alert('Error de conexión al cargar los gerentes')
+    } finally {
+      setFetchingUsers(false)
     }
   }
 
@@ -79,14 +88,21 @@ export function AssignManagerDialog({
         }),
       })
 
+      const result = await response.json()
+      
+
       if (response.ok) {
+        alert('Gerente asignado exitosamente')
         onOpenChange(false)
         setSelectedUserId('')
         // Recargar la página para ver los cambios
-        window.location.reload()
+        setTimeout(() => window.location.reload(), 1000)
+      } else {
+        throw new Error(result.error || 'Error al asignar gerente')
       }
-    } catch (error) {
-      console.error('Error assigning manager:', error)
+
+    } catch (error: any) {
+      alert('Error: ' + error.message)
     } finally {
       setLoading(false)
     }
@@ -98,41 +114,56 @@ export function AssignManagerDialog({
         <DialogHeader>
           <DialogTitle>Asignar Gerente</DialogTitle>
           <DialogDescription>
-            Selecciona un gerente para el restaurante {restaurante.nombre}
+            Selecciona un gerente para el restaurante <strong>{restaurante.nombre}</strong>
           </DialogDescription>
         </DialogHeader>
         
         <div className="space-y-4">
           <div>
             <Label htmlFor="gerente">Seleccionar Gerente</Label>
-            <Select value={selectedUserId} onValueChange={setSelectedUserId}>
+            <Select value={selectedUserId} onValueChange={setSelectedUserId} disabled={fetchingUsers}>
               <SelectTrigger>
-                <SelectValue placeholder="Selecciona un gerente" />
+                <SelectValue placeholder={
+                  fetchingUsers ? "Cargando gerentes..." : "Selecciona un gerente"
+                } />
               </SelectTrigger>
               <SelectContent>
-                {users.map((user) => (
-                  <SelectItem key={user.id} value={user.id}>
-                    {user.name} ({user.email})
+                {users.length === 0 && !fetchingUsers ? (
+                  <SelectItem value="no-users" disabled>
+                    No hay gerentes disponibles
                   </SelectItem>
-                ))}
+                ) : (
+                  users.map((user) => (
+                    <SelectItem key={user.id} value={user.id}>
+                      {user.name} ({user.email})
+                    </SelectItem>
+                  ))
+                )}
               </SelectContent>
             </Select>
+            {fetchingUsers && (
+              <p className="text-sm text-muted-foreground mt-1">Cargando lista de gerentes...</p>
+            )}
           </div>
 
-          <div className="flex justify-end space-x-2">
+          <div className="flex justify-end space-x-2 pt-4">
             <Button
               variant="outline"
               onClick={() => onOpenChange(false)}
+              disabled={loading}
             >
               Cancelar
             </Button>
             <Button 
               onClick={handleAssignManager} 
-              disabled={!selectedUserId || loading}
+              disabled={!selectedUserId || loading || fetchingUsers}
+              className="bg-orange-500 hover:bg-orange-600 text-white"
             >
               {loading ? 'Asignando...' : 'Asignar Gerente'}
             </Button>
           </div>
+
+
         </div>
       </DialogContent>
     </Dialog>

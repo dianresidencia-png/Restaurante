@@ -8,6 +8,24 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // TUS COLORES ESPECÍFICOS
+      colors: {
+        orange: {
+          500: '#ff4800',
+          600: '#ff5400', 
+          700: '#ff6000',
+          800: '#ff6d00',
+          900: '#ff7900',
+          950: '#ff8500',
+        },
+        blue: {
+          500: '#00b4d8',
+          600: '#0096c7',
+          700: '#0077b6', 
+          800: '#023e8a',
+          900: '#03045e',
+        },
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',

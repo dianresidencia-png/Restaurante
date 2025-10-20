@@ -5,56 +5,50 @@
 
 @layer theme {
   :root {
-    /* Colores base del sistema - Tema Naranja */
+    /* Colores base del sistema */
     --color-background: oklch(1 0 0);
     --color-foreground: oklch(0.13 0.028 261.692);
     
-    /* Color principal del restaurante (Naranja) */
-    --color-primary: oklch(0.65 0.25 45);
-    --color-primary-foreground: oklch(1 0 0);
+    /* TUS COLORES ESPECÍFICOS COMO VARIABLES PRINCIPALES */
+    --color-primary: #ff4800;           /* orange-500 */
+    --color-primary-dark: #ff5400;      /* orange-600 */
+    --color-primary-light: #fff7ed;     /* naranja muy claro */
     
-    /* Variaciones del naranja para diferentes estados */
-    --color-primary-dark: oklch(0.55 0.25 45);
-    --color-primary-light: oklch(0.95 0.05 45);
+    --color-secondary: #00b4d8;         /* blue-500 */
+    --color-secondary-dark: #0096c7;    /* blue-600 */
+    --color-secondary-light: #f0f9ff;   /* azul muy claro */
     
-    /* Colores secundarios armónicos con naranja */
-    --color-secondary: oklch(0.65 0.25 25);
-    --color-secondary-foreground: oklch(1 0 0);
+    /* Colores para roles usando tu paleta */
+    --color-cliente: #00b4d8;           /* blue-500 */
+    --color-cliente-foreground: #ffffff;
     
-    --color-accent: oklch(0.75 0.25 85);
-    --color-accent-foreground: oklch(0.13 0.028 261.692);
+    --color-mesero: #ff4800;            /* orange-500 */
+    --color-mesero-foreground: #ffffff;
     
-
-    --color-cliente: oklch(0.65 0.25 150);
-    --color-cliente-foreground: oklch(1 0 0);
+    --color-chef: #ff6000;              /* orange-700 */
+    --color-chef-foreground: #ffffff;
     
-    --color-mesero: oklch(0.65 0.25 45);
-    --color-mesero-foreground: oklch(1 0 0);
+    --color-supervisor: #0077b6;        /* blue-700 */
+    --color-supervisor-foreground: #ffffff;
     
-    --color-chef: oklch(0.65 0.25 25);
-    --color-chef-foreground: oklch(1 0 0);
+    --color-admin-local: #023e8a;       /* blue-800 */
+    --color-admin-local-foreground: #ffffff;
     
-    --color-supervisor: oklch(0.75 0.25 85);
-    --color-supervisor-foreground: oklch(27.968% 0.08696 265.764);
-    
-    --color-admin-local: oklch(0.65 0.25 230);
-    --color-admin-local-foreground: oklch(1 0 0);
-    
-    --color-super-admin: oklch(0.13 0.028 261.692);
-    --color-super-admin-foreground: oklch(1 0 0);
+    --color-super-admin: #03045e;       /* blue-900 */
+    --color-super-admin-foreground: #ffffff;
 
     /* Colores de componentes */
     --color-card: oklch(1 0 0);
     --color-card-foreground: oklch(0.13 0.028 261.692);
     --color-popover: oklch(1 0 0);
     --color-popover-foreground: oklch(0.13 0.028 261.692);
-    --color-muted: oklch(0.95 0.05 45);
-    --color-muted-foreground: oklch(0.55 0.05 45);
-    --color-destructive: oklch(0.65 0.25 25);
+    --color-muted: #fef7ed;             /* naranja claro */
+    --color-muted-foreground: #9ca3af;
+    --color-destructive: #dc2626;
     --color-destructive-foreground: oklch(1 0 0);
-    --color-border: oklch(0.9 0.1 45);
-    --color-input: oklch(0.9 0.1 45);
-    --color-ring: oklch(0.65 0.25 45);
+    --color-border: #fed7aa;            /* borde naranja claro */
+    --color-input: #fed7aa;
+    --color-ring: #ff4800;              /* orange-500 */
     
     /* Border radius */
     --radius: 0.75rem;
@@ -63,7 +57,7 @@
   .dark {
     --color-background: oklch(0.13 0.028 261.692);
     --color-foreground: oklch(0.95 0.05 45);
-    --color-primary: oklch(0.65 0.25 45);
+    --color-primary: #ff4800;
     --color-primary-foreground: oklch(0.13 0.028 261.692);
     --color-card: oklch(0.2 0.028 261.692);
     --color-card-foreground: oklch(0.95 0.05 45);
@@ -83,7 +77,7 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  /* Scrollbar personalizado */
+  /* Scrollbar personalizado con tus colores */
   ::-webkit-scrollbar {
     width: 6px;
   }
@@ -189,7 +183,7 @@
 
   /* Degradado diagonal para headers o cards destacados */
   .bg-gradient-diagonal {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   }
 
   /* Degradado animado para transiciones suaves */

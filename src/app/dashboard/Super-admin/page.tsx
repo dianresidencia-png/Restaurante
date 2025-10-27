@@ -59,7 +59,7 @@ export default async function AdminDashboard() {
         {/* Métricas con enlaces */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {/* Card de Restaurantes - Clickable */}
-          <Link href="/dashboard/super-admin/restaurantes">
+          <Link href="/dashboard/Super-admin/restaurantes">
             <Card className="cursor-pointer transition-all hover:shadow-md hover:border-orange-300 group">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Restaurantes Activos</CardTitle>
@@ -120,7 +120,7 @@ export default async function AdminDashboard() {
 
         {/* Sección de acciones rápidas */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-8">
-          <Link href="/dashboard/super-admin/restaurantes">
+          <Link href="/dashboard/Super-admin/restaurantes">
             <Card className="cursor-pointer border-2 border-dashed border-gray-300 hover:border-orange-300 transition-all group">
               <CardContent className="p-6 text-center">
                 <Building2 className="h-12 w-12 mx-auto text-gray-400 group-hover:text-orange-500 mb-4" />

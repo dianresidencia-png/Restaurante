@@ -138,7 +138,7 @@ export default async function AdminDashboard() {
               <Users className="h-12 w-12 mx-auto text-gray-400 mb-4" />
               <h3 className="font-semibold">Gestionar Usuarios</h3>
               <p className="text-sm text-muted-foreground mt-2">
-                Próximamente...
+                
               </p>
             </CardContent>
           </Card>
@@ -148,7 +148,7 @@ export default async function AdminDashboard() {
               <DollarSign className="h-12 w-12 mx-auto text-gray-400 mb-4" />
               <h3 className="font-semibold">Reportes</h3>
               <p className="text-sm text-muted-foreground mt-2">
-                Próximamente...
+               
               </p>
             </CardContent>
           </Card>

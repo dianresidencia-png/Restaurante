@@ -29,7 +29,7 @@ export default function RegisterPage() {
       email: '',
       password: '',
       confirmPassword: '',
-
+      role: 'CLIENTE'
     }
   })
 
@@ -46,7 +46,10 @@ export default function RegisterPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          role: 'CLIENTE' 
+        }),
       })
 
       const result = await response.json()
@@ -83,6 +86,18 @@ export default function RegisterPage() {
           </CardHeader>
           
           <CardContent>
+            {error && (
+              <Alert variant="destructive" className="mb-4">
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
+            
+            {success && (
+              <Alert className="mb-4 bg-green-50 text-green-800 border-green-200">
+                <AlertDescription>{success}</AlertDescription>
+              </Alert>
+            )}
+
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <FormField
@@ -159,9 +174,10 @@ export default function RegisterPage() {
                   )}
                 />
 
-               
+                {/* Campo oculto para el rol */}
+                <input type="hidden" {...form.register('role')} value="CLIENTE" />
 
-                <Button type="submit" className="w-full" disabled={isLoading}>
+                <Button type="submit" className="w-full btn-restaurant" disabled={isLoading}>
                   {isLoading ? 'Creando cuenta ...' : 'Registrarse'}
                 </Button>
               </form>
